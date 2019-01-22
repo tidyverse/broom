@@ -13,7 +13,7 @@ fit2 <- Mclust(dat, G = 1, verbose = FALSE)
 test_that("mclust tidier arguments", {
   check_arguments(tidy.Mclust)
   check_arguments(glance.Mclust)
-  check_arguments(augment.Mclust, strict = FALSE)
+  check_arguments(augment.Mclust)
 })
 
 test_that("tidy.Mclust", {

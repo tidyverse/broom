@@ -14,7 +14,7 @@ fit2 <- betareg(yield ~ batch + temp | temp, data = GasolineYield)
 test_that("betareg tidier arguments", {
   check_arguments(tidy.betareg)
   check_arguments(glance.betareg)
-  check_arguments(augment.betareg, strict = FALSE)
+  check_arguments(augment.betareg)
 })
 
 test_that("tidy.betareg", {
@@ -50,4 +50,15 @@ test_that("augment.betareg", {
     data = GasolineYield,
     newdata = GasolineYield
   )
+  
+  ## Ensure augment.betareg() formals align exactly with betareg()
+  ## This test will fail if the betareg options for predict or residuals
+  ## change.  At which point, we should also update the options for
+  ## augment.betareg() accordingly.
+  betareg_predict <- eval(formals(betareg:::predict.betareg)$type)
+  betareg_residuals <- eval(formals(betareg:::residuals.betareg)$type)
+  broom_predict <- eval(formals(broom:::augment.betareg)$type.predict)
+  broom_residuals <- eval(formals(broom:::augment.betareg)$type.residuals)
+  expect_identical(betareg_predict, broom_predict)
+  expect_identical(betareg_residuals, broom_residuals)
 })

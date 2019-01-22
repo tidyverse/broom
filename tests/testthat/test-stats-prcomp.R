@@ -7,7 +7,7 @@ pc <- prcomp(USArrests, scale = TRUE)
 
 test_that("prcomp tidier arguments", {
   check_arguments(tidy.prcomp)
-  check_arguments(augment.prcomp, strict = FALSE)
+  check_arguments(augment.prcomp)
 })
 
 

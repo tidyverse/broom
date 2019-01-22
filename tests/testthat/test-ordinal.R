@@ -15,7 +15,7 @@ mfit <- clmm(rating ~ temp + contact + (1 | judge), data = wine)
 test_that("ordinal tidier arguments", {
   check_arguments(tidy.clm)
   check_arguments(glance.clm)
-  check_arguments(augment.clm, strict = FALSE)
+  check_arguments(augment.clm)
   
   check_arguments(tidy.clmm)
   check_arguments(glance.clmm)

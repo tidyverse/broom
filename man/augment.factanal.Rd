@@ -4,7 +4,7 @@
 \alias{augment.factanal}
 \title{Augment data with information from a(n) factanal object}
 \usage{
-\method{augment}{factanal}(x, data, ...)
+\method{augment}{factanal}(x, data = NULL, ...)
 }
 \arguments{
 \item{x}{A \code{factanal} object created by \code{\link[stats:factanal]{stats::factanal()}}.}

@@ -4,7 +4,7 @@
 \alias{augment.rqs}
 \title{Augment data with information from a(n) rqs object}
 \usage{
-\method{augment}{rqs}(x, data = model.frame(x), newdata, ...)
+\method{augment}{rqs}(x, data = model.frame(x), newdata = NULL, ...)
 }
 \arguments{
 \item{x}{An \code{rqs} object returned from \code{\link[quantreg:rq]{quantreg::rq()}}.}

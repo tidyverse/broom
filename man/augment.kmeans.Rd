@@ -4,7 +4,7 @@
 \alias{augment.kmeans}
 \title{Augment data with information from a(n) kmeans object}
 \usage{
-\method{augment}{kmeans}(x, data, ...)
+\method{augment}{kmeans}(x, data = NULL, ...)
 }
 \arguments{
 \item{x}{A \code{kmeans} object created by \code{\link[stats:kmeans]{stats::kmeans()}}.}

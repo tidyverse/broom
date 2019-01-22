@@ -42,7 +42,10 @@ tidy.kmeans <- function(x, col.names = colnames(x$centers), ...) {
 #' @export
 #' @seealso [augment()], [stats::kmeans()]
 #' @family kmeans tidiers
-augment.kmeans <- function(x, data, ...) {
+augment.kmeans <- function(x, data = NULL, ...) {
+  if (is.null(data)) {
+    stop("Must specify `data` argument.", call. = FALSE)
+  }
   fix_data_frame(data, newcol = ".rownames") %>% 
     mutate(.cluster = factor(x$cluster))
 }

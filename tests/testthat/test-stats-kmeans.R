@@ -14,7 +14,7 @@ fit <- kmeans(x, 2)
 test_that("kmeans tidier arguments", {
   check_arguments(tidy.kmeans)
   check_arguments(glance.kmeans)
-  check_arguments(augment.kmeans, strict = FALSE)
+  check_arguments(augment.kmeans)
 })
 
 # tidy.kmeans uses the orginal column names to name columns in output.  
@@ -34,7 +34,7 @@ test_that("augment.kmeans", {
   # data argument cannot be empty
   expect_error(
     augment(fit),
-    regexp = "argument \"data\" is missing, with no default"
+    regexp = "Must specify `data` argument."
   )
   
   check_augment_function(
@@ -44,4 +44,7 @@ test_that("augment.kmeans", {
     newdata = x,
     strict = FALSE
   )
+  
+  au <- augment(fit, data = x)
+  check_dims(au, expected_cols = ncol(x) + 1)
 })

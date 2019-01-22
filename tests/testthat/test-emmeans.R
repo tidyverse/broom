@@ -21,7 +21,7 @@ marginal_dashes <- tibble(
   lsmeans::contrast(., "pairwise")
 
 test_that("lsmeans tidier arguments", {
-  check_arguments(tidy.lsmobj, strict = FALSE)
+  check_arguments(tidy.lsmobj)
   check_arguments(tidy.ref.grid)
   check_arguments(tidy.emmGrid)
 })

@@ -145,7 +145,7 @@ tidy.prcomp <- function(x, matrix = "u", ...) {
 #' @seealso [stats::prcomp()], [svd_tidiers]
 #' @family svd tidiers
 #' 
-augment.prcomp <- function(x, data = NULL, newdata, ...) {
+augment.prcomp <- function(x, data = NULL, newdata = NULL, ...) {
   ret <- if (!missing(newdata)) {
     ret <- data.frame(.rownames = rownames(newdata))
     pred <- as.data.frame(predict(x, newdata = newdata))

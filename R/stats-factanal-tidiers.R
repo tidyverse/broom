@@ -63,7 +63,7 @@ tidy.factanal <- function(x, ...) {
 #' @export
 #' @seealso [augment()], [stats::factanal()]
 #' @family factanal tidiers
-augment.factanal <- function(x, data, ...) {
+augment.factanal <- function(x, data = NULL, ...) {
   scores <- x$scores
 
   # Check scores were computed
@@ -75,8 +75,8 @@ augment.factanal <- function(x, data, ...) {
   }
 
   # Place relevant values into a tidy data frame
-  tidy_df <- data.frame(.rownames = rownames(scores), data.frame(scores)) %>%
-    as_tibble()
+  tidy_df <- bind_cols(tibble(.rownames = rownames(scores)),
+                       as_tibble(scores))
 
   colnames(tidy_df) <- gsub("Factor", ".fs", colnames(tidy_df))
 

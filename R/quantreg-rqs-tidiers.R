@@ -59,7 +59,7 @@ glance.rqs <- function(x, ...) {
 #' @export
 #' @seealso [augment], [quantreg::rq()], [quantreg::predict.rqs()]
 #' @family quantreg tidiers
-augment.rqs <- function(x, data = model.frame(x), newdata, ...) {
+augment.rqs <- function(x, data = model.frame(x), newdata = NULL, ...) {
   n_tau <- length(x[["tau"]])
   if (missing(newdata) || is.null(newdata)) {
     original <- data[rep(seq_len(nrow(data)), n_tau), ]

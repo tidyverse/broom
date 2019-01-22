@@ -4,7 +4,7 @@
 \alias{augment.prcomp}
 \title{Augment data with information from a(n) prcomp object}
 \usage{
-\method{augment}{prcomp}(x, data = NULL, newdata, ...)
+\method{augment}{prcomp}(x, data = NULL, newdata = NULL, ...)
 }
 \arguments{
 \item{x}{A \code{prcomp} object returned by \code{\link[stats:prcomp]{stats::prcomp()}}.}
