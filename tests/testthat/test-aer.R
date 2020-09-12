@@ -5,67 +5,29 @@ skip_on_cran()
 skip_if_not_installed("modeltests")
 library(modeltests)
 
-skip_if_not_installed("AER")
+skip_if_not_installed("aer")
 library(AER)
 library(dplyr)
 library(modeltests)
 
-data("CigarettesSW")
-df <- CigarettesSW %>%
-  mutate(
-    rprice = price / cpi,
-    rincome = income / population / cpi,
-    tdiff = (taxs - tax) / cpi
-  )
+data("Affairs", package = "AER")
 
-fit <- ivreg(
-  log(packs) ~ log(rprice) + log(rincome) | log(rincome) + tdiff + I(tax / cpi),
-  data = df, subset = year == "1995"
-)
+tob1 <- tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating,
+              data = Affairs)
 
-ivfit1 <- ivreg(mpg ~ hp | qsec + am, data = mtcars)
-ivfit2 <- ivreg(mpg ~ cyl + wt | qsec + am, data = mtcars)
+tob2 <- tobit(affairs ~ age + yearsmarried + religiousness + occupation + rating,
+              right = 4, data = Affairs)
 
-test_that("ivreg tidier arguments", {
-  check_arguments(tidy.ivreg)
-  check_arguments(glance.ivreg)
-  check_arguments(augment.ivreg, strict = FALSE)
+test_that("aer tidier arguments", {
+  check_arguments(tidy.tobit)
 })
 
-test_that("tidy.ivreg", {
-  td <- tidy(fit)
-  td2 <- tidy(fit, conf.int = TRUE)
-
-  tdiv1 <- tidy(ivfit1, instruments = FALSE)
-  tdiv1_fstat <- tidy(ivfit1, instruments = TRUE)
-  tdiv2 <- tidy(ivfit2, instruments = FALSE)
-  tdiv2_fstat <- tidy(ivfit2, instruments = TRUE)
-
-  check_tidy_output(td)
+test_that("tidy.aer", {
+  td1 <- tidy(tob1)
+  td1_ci <- tidy(tob1, conf.int = TRUE)
+  td2 <- tidy(tob2)
+  
+  check_tidy_output(td1)
+  check_tidy_output(td1_ci)
   check_tidy_output(td2)
-  check_tidy_output(tdiv1)
-  check_tidy_output(tdiv1_fstat)
-  check_tidy_output(tdiv2)
-  check_tidy_output(tdiv2_fstat)
-})
-
-test_that("glance.ivreg", {
-  gl <- glance(fit)
-  gl2 <- glance(fit, diagnostics = TRUE)
-
-  check_glance_outputs(gl) # separately because diagnostics = TRUE adds cols
-  check_glance_outputs(gl2)
-})
-
-test_that("augment.ivreg", {
-  check_augment_function(
-    aug = augment.ivreg,
-    model = fit,
-    data = df,
-    newdata = df,
-    strict = FALSE
-  )
-
-  au <- augment(fit)
-  expect_true(all(c(".resid", ".fitted") %in% names(au)))
 })

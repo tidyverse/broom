@@ -24,6 +24,11 @@ in the overwriting of entries in the `curve` column (#914)
 * Fixed bug related to univariate zoo series in `tidy.zoo()` (#916 by @WillemVervoort)
 * Fixed a bug related to `tidy.prcomp()` assigning the wrong PC labels from "loadings" 
 and "scores" matrices (#910 by @tavareshugo)
+* Update ivreg tidiers after upstream split from AER package. Includes support
+for stage-1 regression components and alternative VCOV error matrices, as well
+as "interval" argument for `augment.ivreg`. (#922 by @grantmcdermott)
+* Added `tidy` method for `AER:tobit`. (#922 by @grantmcdermott above)
+
 
 # broom 0.7.0
 
