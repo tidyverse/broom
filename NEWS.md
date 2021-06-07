@@ -2,6 +2,7 @@
 
 * Added `exponentiate` argument to `tidy.gam()` tidier applicable for parametric terms. (`#1013` by `@ddsjoberg`)
 * Added `exponentiate` argument to `tidy.negbin()` tidier. (`#1011` by `@ddsjoberg`)
+* Fixed confidence intervals in `tidy.crr()` which are exponentiated when `exponentiate = F` (`#1023` by `@leejasme`)
 
 # broom 0.7.6
 
