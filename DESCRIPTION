@@ -497,6 +497,10 @@ Authors@R:
              family = "Vervoort",
              role = "ctb",
              email = "Willemvervoort@gmail.com"),
+     person(given = "Anish S.",
+             family = "Shah",
+             role = "ctb",
+             email = "asshah4@emory.edu"),
       person(given = "Brenton M.",
              family = "Wiernik",
              role = "ctb",
@@ -649,6 +653,7 @@ Collate:
     'ergm-tidiers.R'
     'fixest-tidiers.R'
     'gam-tidiers.R'
+    'gee-tidiers.R'
     'geepack-tidiers.R'
     'glmnet-cv-glmnet-tidiers.R'
     'glmnet-glmnet-tidiers.R'
